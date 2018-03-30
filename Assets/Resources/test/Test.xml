@@ -1,0 +1,9 @@
+<data xmlns:flower="http://www.flower.com" xmlns:ui="modules/ui">
+    <me/>
+    <me2 val='21'/>
+        <!--嗯哪aaaaa/-->
+        <item a='1' b='123'/>
+    <item c='2' d="556">
+        我了个擦
+    </item>
+</data>
