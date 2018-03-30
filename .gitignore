@@ -1,6 +1,8 @@
 .idea
 .idea/
 .idea/workspace.xml
+Assembly-CSharp.csproj
+GameLab.sln
 Library/
 ProjectSettings/
 Temp/

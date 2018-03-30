@@ -13,9 +13,9 @@ public class AppStart : MonoBehaviour {
         XMLElement xml = XMLElement.Parse(str);*/
 
 
-        /*string str = Resources.Load("test/Config") + "";
-        Debug.Log(str);
-        object json = JSON.Parse(str);*/
+        string str = Resources.Load("test/Config") + "";
+		Dictionary<string,object> json = JSON.Parse(str) as Dictionary<string,object>;
+		Debug.Log(json["a"]);
     }
 
     private void OnChange(lib.Event e)
@@ -31,20 +31,23 @@ public class AppStart : MonoBehaviour {
 
 public class PlayerData : ObjectValue
 {
-    private IntValue age =  new IntValue();
+	public IntValue age =  new IntValue();
     public int Age
     {
         get { return (int)age.Value; }
         set { age.Value = value; }
     }
 
-    protected override void Decode(string val)
+    protected override void Decode(object val)
     {
-
+		Dictionary<string,object> json = val as Dictionary<string,object>;
+		this.age.Value = json["age"];
     }
 
     protected override string Encode()
     {
-        return "";
+		return "{\n"
+			+ "age:" + age.Value + "\n"
+			+ "}";
     }
 }

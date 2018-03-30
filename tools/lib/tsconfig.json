@@ -1,0 +1,89 @@
+{
+  "compilerOptions": {
+    "module": "system",
+    "target": "ES2015",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "declaration": true,
+    "watch": true,
+    "outFile": "lib.js"
+  },
+  "files": [
+    "./typings/index.d.ts",
+    "./src/file/File.ts",
+    "./src/utils/ByteArray.ts",
+    "./src/utils/UTFChange.ts",
+    "./src/utils/Help.ts",
+
+    "./src/error/Error.ts",
+
+    "./src/net/package/supers/IHead.ts",
+    "./src/net/package/supers/IMessage.ts",
+    "./src/net/package/supers/IRemote.ts",
+
+    "./src/net/package/RequestHead.ts",
+    "./src/net/package/ResponseHead.ts",
+    "./src/net/package/Request.ts",
+    "./src/net/package/Response.ts",
+    "./src/net/package/ZeroResponse.ts",
+
+    "./src/net/supers/ISocket.ts",
+    "./src/net/supers/SocketBase.ts",
+    "./src/net/supers/SocketBuffer.ts",
+    "./src/net/supers/ISocketClient.ts",
+    "./src/net/supers/ISocketServer.ts",
+    "./src/net/supers/ISocketServerClient.ts",
+
+    "./src/net/websocket/WebSocketServer.ts",
+    "./src/net/websocket/WebSocketServerClient.ts",
+    "./src/net/websocket/WebSocketClient.ts",
+
+    "./src/app/command/CommandBase.ts",
+    "./src/app/command/RegisterInterfaceCommand.ts",
+    "./src/app/command/CallCommand.ts",
+    "./src/app/command/AwaitReadyCommand.ts",
+    "./src/app/command/ConnectRouteServerCommand.ts",
+
+    "./src/app/CallResult.ts",
+    "./src/app/ServerApp.ts",
+    "./src/app/RouteApp.ts",
+
+    "./src/app/proxy/config/struct/Param.ts",
+    "./src/app/proxy/config/struct/ParamType.ts",
+    "./src/app/proxy/config/InitServerInterface.ts",
+    "./src/app/proxy/config/InterfaceConfig.ts",
+    "./src/app//proxy/config/ServerConfig.ts",
+    "./src/app/proxy/config/ClientConfig.ts",
+    "./src/app/proxy/config/RouteConfig.ts",
+
+    "./src/net/component/CommandComponent.ts",
+    "./src/net/protocol/CallRequest.ts",
+    "./src/net/protocol/CallResponse.ts",
+    "./src/net/protocol/RegisterInterfaceRequest.ts",
+    "./src/net/protocol/RegisterServerRequest.ts",
+
+    "./src/app/proxy/vo/AwaitVO.ts",
+    "./src/app/proxy/vo/CommandVO.ts",
+    "./src/app/proxy/vo/ServerVO.ts",
+    "./src/app/proxy/vo/DependVO.ts",
+    "./src/app/proxy/vo/CallAwaitConditionVO.ts",
+    "./src/app/proxy/CommandProxy.ts",
+    "./src/app/proxy/ServerProxy.ts",
+    "./src/app/proxy/DependProxy.ts",
+    "./src/app/proxy/StateProxy.ts",
+    "./src/app/proxy/StaticProxy.ts",
+
+    "./src/net/route/vo/RouteConnection.ts",
+    "./src/net/route/RouteStation.ts",
+    "./src/net/route/RouteServer.ts",
+    "./src/net/route/RouteServerClient.ts",
+    "./src/net/route/RouteClient.ts",
+
+    "./src/net/InsideServer.ts",
+    "./src/net/InsideServerClient.ts",
+    "./src/net/InsideClient.ts",
+
+    "./src/Lib.ts"
+  ]
+}

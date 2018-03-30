@@ -1,0 +1,15 @@
+{
+  "name": "utool",
+  "version": "1.0.0",
+  "description": "unity tools",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "li meng jie",
+  "license": "ISC",
+  "bin": "bin/foo"
+}
