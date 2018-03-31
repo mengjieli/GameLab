@@ -28,7 +28,7 @@ namespace lib {
                 this._end = "";
                 if (!this.isDirection && this.name.split(".").length > 1) {
                     this._end = this.name.split(".")[this.name.split(".").length - 1];
-                    this._name = this.name.slice(0, this.name.length - this._end.length);
+                    this._name = this.name.slice(0, this.name.length - this._end.length - 1);
                 }
                 if (this.isDirection) {
                     this._direction = this.url.slice(0, this.url.length - this.name.length);

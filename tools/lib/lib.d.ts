@@ -59,6 +59,18 @@ declare namespace lib {
     }
 }
 declare namespace lib {
+    class StringUtils {
+        static findStringWidthBeforeAndFollow(content: any, findString: any, befores: any, follows: any, begin: any): any;
+        static findString(content: any, findString: any, begin: any): any;
+        static jumpStrings(content: any, start: any, jumps: any): any;
+        static findCharNotABC(content: any, start: any): any;
+        static isCharABC(char: any): boolean;
+        static jumpPackage(content: any, start: any): any;
+        static replaceString(str: any, findStr: any, tstr: any): any;
+        static hasStringAt(str: any, hstrs: any, pos: any): boolean;
+    }
+}
+declare namespace lib {
     class Error {
         static $SOCKET_CLOSED: number;
         static EXECUTE_ERROR: number;

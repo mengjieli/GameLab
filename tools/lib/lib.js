@@ -24,7 +24,7 @@ var lib;
                 this._end = "";
                 if (!this.isDirection && this.name.split(".").length > 1) {
                     this._end = this.name.split(".")[this.name.split(".").length - 1];
-                    this._name = this.name.slice(0, this.name.length - this._end.length);
+                    this._name = this.name.slice(0, this.name.length - this._end.length - 1);
                 }
                 if (this.isDirection) {
                     this._direction = this.url.slice(0, this.url.length - this.name.length);
@@ -444,6 +444,156 @@ var lib;
         }
     }
     lib.Help = Help;
+})(lib || (lib = {}));
+var lib;
+(function (lib) {
+    class StringUtils {
+        static findStringWidthBeforeAndFollow(content, findString, befores, follows, begin) {
+            var findInBefores = false;
+            if (befores && befores.length) {
+                for (var i = 0; i < befores.length; i++) {
+                    if (befores[i] == findString) {
+                        findInBefores = true;
+                        break;
+                    }
+                }
+            }
+            while (true) {
+                var find;
+                var index;
+                if (befores && befores.length) {
+                    find = false;
+                    for (var i = 0; i < befores.length; i++) {
+                        index = StringUtils.findString(content, befores[i], begin);
+                        if (index != -1) {
+                            find = true;
+                            begin = index + befores[i].length;
+                            break;
+                        }
+                    }
+                    if (find == false) {
+                        break;
+                    }
+                }
+                index = StringUtils.findString(content, findString, begin);
+                if (index == -1) {
+                    if (befores && befores.length) {
+                        continue;
+                    }
+                    else {
+                        break;
+                    }
+                }
+                begin = index;
+                if (follows && follows.length) {
+                    find = false;
+                    index += findString.length;
+                    for (var i = 0; i < follows.length; i++) {
+                        if (content.slice(index, index + follows[i].length) == follows[i]) {
+                            find = true;
+                            break;
+                        }
+                    }
+                    if (find) {
+                        return begin;
+                    }
+                    else {
+                        if (befores && befores.length) {
+                            if (!findInBefores) {
+                                begin += findString.length;
+                            }
+                        }
+                        else {
+                            begin += findString.length;
+                        }
+                        continue;
+                    }
+                }
+                else {
+                    return begin;
+                }
+            }
+            return -1;
+        }
+        static findString(content, findString, begin) {
+            begin = begin || 0;
+            for (var i = begin; i < content.length; i++) {
+                if (content.slice(i, i + findString.length) == findString) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+        static jumpStrings(content, start, jumps) {
+            var pos = start;
+            while (true) {
+                var find = false;
+                for (var i = 0; i < jumps.length; i++) {
+                    if (jumps[i] == content.slice(pos, pos + jumps[i].length)) {
+                        find = true;
+                        pos += jumps[i].length;
+                        break;
+                    }
+                }
+                if (find == false) {
+                    break;
+                }
+            }
+            return pos;
+        }
+        static findCharNotABC(content, start) {
+            start = +start;
+            for (var i = start; i < content.length; i++) {
+                if (!StringUtils.isCharABC(content.charAt(i))) {
+                    return i;
+                }
+            }
+            return content.length;
+        }
+        static isCharABC(char) {
+            var code = char.charCodeAt(0);
+            if (code >= "a".charCodeAt(0) && code <= "z".charCodeAt(0) || code >= "A".charCodeAt(0) && code <= "Z".charCodeAt(0)) {
+                return true;
+            }
+            return false;
+        }
+        static jumpPackage(content, start) {
+            var index = StringUtils.findCharNotABC(content, start);
+            if (index == start) {
+                return start;
+            }
+            while (true && index < content.length) {
+                if (content.charAt(index) != ".") {
+                    break;
+                }
+                var next = StringUtils.findCharNotABC(content, index + 1);
+                if (next == index + 1) {
+                    break;
+                }
+                index = next;
+            }
+            return index;
+        }
+        static replaceString(str, findStr, tstr) {
+            for (var i = 0; i < str.length; i++) {
+                if (StringUtils.hasStringAt(str, [findStr], i)) {
+                    str = str.slice(0, i) + tstr + str.slice(i + findStr.length, str.length);
+                    i--;
+                }
+            }
+            return str;
+        }
+        static hasStringAt(str, hstrs, pos) {
+            for (var i = 0; i < hstrs.length; i++) {
+                var hstr = hstrs[i];
+                if (str.length - pos >= hstr.length && str.slice(pos, pos + hstr.length) == hstr) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+    lib.StringUtils = StringUtils;
 })(lib || (lib = {}));
 var lib;
 (function (lib) {

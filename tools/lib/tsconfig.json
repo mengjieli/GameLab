@@ -15,6 +15,7 @@
     "./src/utils/ByteArray.ts",
     "./src/utils/UTFChange.ts",
     "./src/utils/Help.ts",
+    "./src/utils/StringUtils.ts",
 
     "./src/error/Error.ts",
 

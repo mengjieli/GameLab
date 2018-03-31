@@ -11,5 +11,8 @@
   },
   "author": "li meng jie",
   "license": "ISC",
-  "bin": "bin/foo"
+  "bin": "bin/foo",
+  "dependencies": {
+    "websocket": "^1.0.25"
+  }
 }
