@@ -2,20 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 using lib;
+using System;
 
 public class AppStart : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
         /*string str = Resources.Load("test/Test") + "";
         Debug.Log(str);
         XMLElement xml = XMLElement.Parse(str);*/
 
-
-        string str = Resources.Load("test/Config") + "";
+        /*string str = Resources.Load("test/Config") + "";
 		Dictionary<string,object> json = JSON.Parse(str) as Dictionary<string,object>;
-		Debug.Log(json["a"]);
+		Debug.Log(json["a"]);*/
+
+        /*string str = Resources.Load("config/All") + "";
+        List<List<string>> csv = CSV.Parse(str);*/
+        ConfigDecode.Decode();
+        object cfg;
+        cfg = PlayerConfig.Configs;
+        cfg = PlayerConfig.GetConfig(2);
     }
 
     private void OnChange(lib.Event e)
@@ -29,7 +35,7 @@ public class AppStart : MonoBehaviour {
 	}
 }
 
-public class PlayerData : ObjectValue
+/*public class PlayerData : ObjectValue
 {
 	public IntValue age =  new IntValue();
     public int Age
@@ -50,4 +56,4 @@ public class PlayerData : ObjectValue
 			+ "age:" + age.Value + "\n"
 			+ "}";
     }
-}
+}*/

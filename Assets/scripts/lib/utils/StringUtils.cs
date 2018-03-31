@@ -23,6 +23,7 @@ namespace lib
         /// <returns></returns>
         public static string Slice(string str,int start,int end)
         {
+            start = start < 0 ? 0 : start;
             end = end > str.Length ? str.Length : end;
             List<char> list = new List<char>();
             for(int i = start; i < end; i++)
@@ -39,6 +40,12 @@ namespace lib
             return new string(chars);
         }
 
+        /// <summary>
+        /// 分割字符串
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="split"></param>
+        /// <returns></returns>
         public static List<string> Split(string str,string split)
         {
             int last = 0;
@@ -55,6 +62,27 @@ namespace lib
             return list;
         }
 
+        public static List<string> Split(string str, char split)
+        {
+            int last = 0;
+            List<string> list = new List<string>();
+            for (int i = 0, len = str.Length; i < len; i++)
+            {
+                if (str[i] == split)
+                {
+                    list.Add(Slice(str, last, i));
+                    last = i + 1;
+                }
+            }
+            list.Add(Slice(str, last, str.Length));
+            return list;
+        }
+
+        /// <summary>
+        /// 把任意类型转换成数组，如果不是数字类型会返回 null
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
         public static object ToNumber(string str)
         {
             int code0 = (int)'0';
@@ -118,6 +146,97 @@ namespace lib
                 }
             }
             return null;
+        }
+        
+        /// <summary>
+        /// 删除特定字符
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="delete"></param>
+        /// <returns></returns>
+        public static string Delete(string str,char deleteChar)
+        {
+            for(int i = 0; i < str.Length; i++)
+            {
+                if(str[i] == deleteChar)
+                {
+                    str = Slice(str, 0, i) + Slice(str, i + 1, str.Length);
+                    i--;
+                }
+            }
+            return str;
+        }
+
+        public static string Delete(string str, string deleteString)
+        {
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (Slice(str,i,i+ deleteString.Length) == deleteString)
+                {
+                    str = Slice(str, 0, i) + Slice(str, i + 1, str.Length);
+                    i -= deleteString.Length;
+                }
+            }
+            return str;
+        }
+
+        /// <summary>
+        /// 替换字符
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="findChar"></param>
+        /// <param name="replaceChar"></param>
+        /// <returns></returns>
+        public static string Replace(string str, char findChar,char replaceChar)
+        {
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (str[i] == findChar)
+                {
+                    str = Slice(str, 0, i) + replaceChar + Slice(str, i + 1, str.Length);
+                    i--;
+                }
+            }
+            return str;
+        }
+
+        public static string Replace(string str, char findChar, string replaceString)
+        {
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (str[i] == findChar)
+                {
+                    str = Slice(str, 0, i) + replaceString + Slice(str, i + 1, str.Length);
+                    i--;
+                }
+            }
+            return str;
+        }
+
+        public static string Replace(string str,string findString,char replaceChar)
+        {
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (Slice(str,i,i + findString.Length) == findString)
+                {
+                    str = Slice(str, 0, i) + replaceChar + Slice(str, i + findString.Length, str.Length);
+                    i--;
+                }
+            }
+            return str;
+        }
+
+        public static string Replace(string str,string findString,string relpaceString)
+        {
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (Slice(str, i, i + findString.Length) == findString)
+                {
+                    str = Slice(str, 0, i) + relpaceString + Slice(str, i + findString.Length, str.Length);
+                    i--;
+                }
+            }
+            return str;
         }
     }
 }

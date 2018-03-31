@@ -1,0 +1,4 @@
+int,(Item)int,(Gun)int
+Id,BornItem,BornGun
+1,1,1
+2,2,2
