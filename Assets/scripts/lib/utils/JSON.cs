@@ -25,8 +25,6 @@ namespace lib
         {
             List<object> values = new List<object>();
             object  currentValue = null;
-            //key 的堆栈
-            List<string> keys = new List<string>();
             //当前 key
             string key = "";
             //当前对象的父对象

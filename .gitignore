@@ -3,7 +3,13 @@
 .idea/workspace.xml
 Assembly-CSharp.csproj
 GameLab.sln
+Assembly-CSharp-Editor.csproj
+GameLab.userprefs
+.vscode/
 Library/
 ProjectSettings/
 Temp/
 UnityPackageManager/
+Main.app
+Main.app/
+h5/
