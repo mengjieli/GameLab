@@ -1,16 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using lib;
-using System;
 using UnityEngine.UI;
 
 public class AppStart : MonoBehaviour {
 
-	public Text text;
+    public Camera mainCamera;
 
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start () {
         /*string str = Resources.Load("test/Test") + "";
         Debug.Log(str);
         XMLElement xml = XMLElement.Parse(str);*/
@@ -21,33 +19,24 @@ public class AppStart : MonoBehaviour {
 
         /*string str = Resources.Load("config/All") + "";
         List<List<string>> csv = CSV.Parse(str);*/
-        
-		/*ConfigDecode.Decode();
+
+        /*ConfigDecode.Decode();
         object cfg;
         cfg = PlayerConfig.Configs;
         cfg = PlayerConfig.GetConfig(2);*/
 
-		//GameThread.Start ();
-		new Thread();
+        //GameThread.Start ();
+
+        gameObject.AddComponent<StartUp>().mainCamera = mainCamera;
+
+        new MainThread();
+        new GameThread();
+        GameThread.Instance.Start();
     }
 
-
-
-    private void OnChange(lib.Event e)
+	void Update ()
     {
-        Debug.Log("change value:" + (e.target as StringValue).Value + ",old:" + (e.target as StringValue).Old);
-    }
-
-	// Update is called once per frame
-	void Update () {
-		ThreadEvent e = ThreadEventList.ReadEvent ();
-		while (e != null) {
-			if (e.Type == ThreadEventType.UpdateObjectPosition) {
-				//Debug.Log (text.rectTransform.position.x + "," + text.rectTransform.position.y + "," + e.Z);
-				text.rectTransform.position = new Vector3 (text.rectTransform.position.x + e.X, text.rectTransform.position.y + e.Y, e.Z);
-			}
-			e = ThreadEventList.ReadEvent ();
-		}
+        MainThread.Instance.Update();
 	}
 
 	void OnDestroy()

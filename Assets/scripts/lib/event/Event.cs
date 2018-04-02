@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 
 namespace lib
 {
@@ -10,7 +11,7 @@ namespace lib
         /// <summary>
         /// 事件类型
         /// </summary>
-        private string type;
+        internal string type;
 
         /// <summary>
         /// 抛出事件的对象
@@ -55,6 +56,7 @@ namespace lib
         public object Data 
         {
             get { return data; }
+            set { data = value; }
         }
 
         /// <summary>
@@ -63,9 +65,9 @@ namespace lib
         public static string CHANGE = "Change";
 
         /// <summary>
-        /// 对象被销毁
+        /// 对象销毁
         /// </summary>
-        public static string DESTORY = "Destory";
+        public static string DISPOSE = "Dispose";
 
         /// <summary>
         /// 某件事情完成
@@ -75,7 +77,7 @@ namespace lib
         /// <summary>
         /// 对象池
         /// </summary>
-        private static ArrayList pools = new ArrayList();
+        private static List<ThreadEvent> pools = new List<ThreadEvent>();
 
         /// <summary>
         /// 创建事件，如果对象池中有则无需创建
@@ -83,23 +85,23 @@ namespace lib
         /// <param name="type"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        internal static Event Create(string type, object data = null)
+        internal static ThreadEvent Create(string type, object data = null)
         {
             if(pools.Count > 0)
             {
-                Event e = pools[pools.Count - 1] as Event;
+                ThreadEvent e = pools[pools.Count - 1];
                 e.type = type;
                 e.data = data;
                 return e;
             }
-            return new Event(type, data);
+            return new ThreadEvent(type, data);
         }
 
         /// <summary>
         /// 把事件放回对象池
         /// </summary>
         /// <param name="e"></param>
-        internal static void Release(Event e)
+        internal static void Release(ThreadEvent e)
         {
             pools.Add(e);
         }

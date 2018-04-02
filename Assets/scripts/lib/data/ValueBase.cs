@@ -1,6 +1,6 @@
 ﻿namespace lib
 {
-    public abstract class ValueBase : Object
+    public abstract class ValueBase : ObjectData
     {
     }
 }

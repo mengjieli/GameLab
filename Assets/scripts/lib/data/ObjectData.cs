@@ -3,14 +3,14 @@
     /// <summary>
     /// 对象，具有唯一标识，并且有生命周期，在结束时会抛出事件
     /// </summary>
-    public class Object : EventDispatcher {
+    public class ObjectData : EventDispatcher {
 
         /// <summary>
         /// 唯一标识，动态的
         /// </summary>
         private int id;
 
-        public Object()
+        public ObjectData()
         {
             id = idCount++;
         }
@@ -26,9 +26,9 @@
         /// <summary>
         /// 销毁
         /// </summary>
-        virtual public void Destory()
+        virtual public void Dispose()
         {
-            DispatchWith(Event.DESTORY);
+            DispatchWith(Event.DISPOSE);
         }
 
         /// <summary>
